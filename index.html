@@ -69,21 +69,43 @@
 <p>Notebooks:</p>
 
 <ul>
-<li><a href="">Whirlwind Tour</a></li>
-<li><a href="">DNA String (Replacement Rules)</a></li>
-<li><a href="">Heat Equation (ODE Solution)</a></li>
-<li><a href="">Pendulum (ODE Solution)</a></li>
-<li><a href="">Hanging Chain (Special Functions, ODE Solution)</a></li>
-<li><a href="">Steam Table (Interpolation)</a></li>
-<li><a href="">Exercises</a></li>
+<li><a href="https://github.com/uiuc-cse/mathematica-fa14/raw/gh-pages/lessons/basics-1-algebraics-symbolics-numerics-graphics.nb">Basic Tour 1</a></li>
+<li><a href="https://github.com/uiuc-cse/mathematica-fa14/raw/gh-pages/lessons/basics-2-datasets-optimization-lists.nb">Basic Tour 2</a></li>
+<li><a href="https://github.com/uiuc-cse/mathematica-fa14/raw/gh-pages/lessons/dna_string.nb">DNA String (Replacement Rules)</a></li>
+<li><a href="https://github.com/uiuc-cse/mathematica-fa14/raw/gh-pages/lessons/heat-eqn-1d.nb">Heat Equation (ODE Solution)</a></li>
+<li><a href="https://github.com/uiuc-cse/mathematica-fa14/raw/gh-pages/lessons/pendulum.nb">Pendulum (ODE Solution)</a></li>
+<li><a href="https://github.com/uiuc-cse/mathematica-fa14/raw/gh-pages/lessons/hanging-chain.nb">Hanging Chain (Special Functions, ODE Solution)</a></li>
+<li><a href="https://github.com/uiuc-cse/mathematica-fa14/raw/gh-pages/lessons/steam.nb">Steam Table (Interpolation)</a></li>
+<li><a href="https://github.com/uiuc-cse/mathematica-fa14/raw/gh-pages/lessons/exercises-basic.nb">Exercises</a></li>
 </ul>
+
+<p>Code Snippets:</p>
+
+<pre><code>data = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
+
+MorseList = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....","..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-",".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..","----.", "-----", ".----", "..---", "...--","....-", ".....","-....", "--...", "---.."};
+
+steamdata = Import["http://www.ohio.edu/mechanical/thermo/property_tables/H2O/H2O_TempSat.xls"][[1]] // TableForm
+steamT   = Part[steamdata[[1, 4 ;; 52, 1]]];
+steamP   = Part[steamdata[[1, 4 ;; 52, 2]]];
+steamVf  = Part[steamdata[[1, 4 ;; 52, 3]]];
+steamVg  = Part[steamdata[[1, 4 ;; 52, 4]]];
+steamUf  = Part[steamdata[[1, 4 ;; 52, 5]]];
+steamUg  = Part[steamdata[[1, 4 ;; 52, 6]]];
+steamHf  = Part[steamdata[[1, 4 ;; 52, 7]]];
+steamHfg = Part[steamdata[[1, 4 ;; 52, 8]]];
+steamHg  = Part[steamdata[[1, 4 ;; 52, 9]]];
+steamSf  = Part[steamdata[[1, 4 ;; 52, 10]]];
+steamSfg = Part[steamdata[[1, 4 ;; 52, 11]]];
+steamSg  = Part[steamdata[[1, 4 ;; 52, 12]]];
+</code></pre>
 
 <h1>
 <a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#resources">Resources</a>
 </h1>
 
 <ul>
-<li><a href="">CSE Handout on <em>Mathematica</em> Functions</a></li>
+<li><a href="https://github.com/uiuc-cse/mathematica-fa14/blob/gh-pages/lessons/handout-basics.pdf?raw=true">CSE Handout on <em>Mathematica</em> Functions</a></li>
 <li><a href="https://mathematica.stackexchange.com/"><em>Mathematica</em> StackExchange</a></li>
 <li><a href="http://reference.wolfram.com/language/">Wolfram Language Reference</a></li>
 <li><a href="http://blog.wolfram.com/2011/12/07/10-tips-for-writing-fast-mathematica-code/">10 Tips for Writing Fast <em>Mathematica</em> Code</a></li>
