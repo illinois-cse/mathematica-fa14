@@ -1,0 +1,362 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     11549,        353]
+NotebookOptionsPosition[      9842,        300]
+NotebookOutlinePosition[     10200,        316]
+CellTagsIndexPosition[     10157,        313]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["Suppose that we have a sequence of genetic data.", "Text",
+ CellChangeTimes->{{3.5913631778041077`*^9, 3.591363194011471*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "data", "=", 
+   "\"\<AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC\
+\>\""}], ";"}]], "Input",
+ CellChangeTimes->{3.591363187321978*^9}],
+
+Cell["\<\
+First, let's carry out a fundamental step:  finding the start codon of a gene \
+in that sequence.\
+\>", "Text",
+ CellChangeTimes->{{3.5913631315596*^9, 3.5913632171682663`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"StringPosition", "[", 
+  RowBox[{"genedata", ",", "\"\<ATG\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.591362753650824*^9, 3.591362767465989*^9}}],
+
+Cell[TextData[{
+ "Another task that we might wish to perform routinely is the determination \
+of the GC ratio.\n1.  Using the documentation on the string functions, find \
+the two functions you will need to get the number of Gs and Cs in the string \
+as well as the string\[CloseCurlyQuote]s length.\n2.  Calculate the GC ratio \
+for the sequence above.\n3.  Then write a general function for any sequence \
+called ",
+ StyleBox["gcCount", "Input"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.591363295833481*^9, 3.591363338910007*^9}, {
+  3.591363370733914*^9, 3.591363404790132*^9}, {3.591363464469791*^9, 
+  3.5913634809450197`*^9}, {3.591365228825234*^9, 3.5913652546704807`*^9}, {
+  3.591365959030087*^9, 3.591365972503786*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox[
+   RowBox[{
+    RowBox[{"StringCount", "[", 
+     RowBox[{"data", ",", "\"\<G\>\""}], "]"}], "+", 
+    RowBox[{"StringCount", "[", 
+     RowBox[{"data", ",", "\"\<C\>\""}], "]"}]}], 
+   RowBox[{"StringLength", "[", "data", "]"}]], "//", "N"}]], "Input",
+ CellChangeTimes->{{3.5913607877136497`*^9, 3.5913608603969173`*^9}, {
+  3.591360948051283*^9, 3.591360974504945*^9}, {3.591361117809149*^9, 
+  3.591361156950479*^9}, {3.591361194329015*^9, 3.591361226246965*^9}, {
+  3.591362699546782*^9, 3.5913627005378647`*^9}, {3.5913631720309896`*^9, 
+  3.591363173157913*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"gcCount", "[", "data_", "]"}], ":=", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     RowBox[{"StringCount", "[", 
+      RowBox[{"data", ",", "\"\<G\>\""}], "]"}], "+", 
+     RowBox[{"StringCount", "[", 
+      RowBox[{"data", ",", "\"\<C\>\""}], "]"}]}], 
+    RowBox[{"StringLength", "[", "data", "]"}]], "//", "N"}]}]], "Input"],
+
+Cell["\<\
+What about RNA transcription?  In RNA, U replaces T.  Using a replacement \
+rule, we can explicitly change the Ts into Us.\
+\>", "Text",
+ CellChangeTimes->{{3.5913644785363493`*^9, 3.591364523337101*^9}, {
+  3.591364772792507*^9, 3.59136478403426*^9}, {3.591364868272491*^9, 
+  3.591364884907001*^9}}],
+
+Cell[BoxData[
+ RowBox[{"RNARules", "=", 
+  RowBox[{"{", 
+   RowBox[{"\"\<T\>\"", "\[Rule]", "\"\<U\>\""}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.591364537525634*^9, 3.591364566933897*^9}, {
+  3.591364789116322*^9, 3.591364805231888*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Characters", "[", "data", "]"}], "/.", "RNARules"}]], "Input",
+ CellChangeTimes->{{3.5913645732769423`*^9, 3.591364581323101*^9}, 
+   3.59136481265839*^9}],
+
+Cell[BoxData[
+ RowBox[{"StringJoin", "[", "%", "]"}]], "Input",
+ CellChangeTimes->{{3.591364820545323*^9, 3.591364825540831*^9}}],
+
+Cell["\<\
+In DNA strings, symbols A and T complement each other, as do C and G.  We \
+wish to calculate the complement of the sequence.\
+\>", "Text",
+ CellChangeTimes->{{3.5913644785363493`*^9, 3.591364523337101*^9}, 
+   3.591364866377614*^9}],
+
+Cell[BoxData[
+ RowBox[{"DNARules", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\"\<A\>\"", "\[Rule]", "\"\<T\>\""}], ",", 
+    RowBox[{"\"\<C\>\"", "\[Rule]", "\"\<G\>\""}], ",", 
+    RowBox[{"\"\<T\>\"", "\[Rule]", "\"\<A\>\""}], ",", 
+    RowBox[{"\"\<G\>\"", "\[Rule]", "\"\<C\>\""}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.591364537525634*^9, 3.591364566933897*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Characters", "[", "data", "]"}], "/.", "DNARules"}]], "Input",
+ CellChangeTimes->{{3.5913645732769423`*^9, 3.591364581323101*^9}}],
+
+Cell[BoxData[
+ RowBox[{"StringJoin", "[", "%", "]"}]], "Input"],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 2}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 4}],
+
+Cell["\<\
+There is a wealth of genetic data available in Mathematica.\
+\>", "Text",
+ CellChangeTimes->{{3.591365443605049*^9, 3.591365471225627*^9}, {
+  3.591366312021126*^9, 3.591366320429596*^9}}],
+
+Cell[BoxData[
+ RowBox[{"GenomeData", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.5913616646312847`*^9, 3.5913616669479427`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"GenomeData", "[", "\"\<Properties\>\"", "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"genedata", "=", 
+   RowBox[{"GenomeData", "[", 
+    RowBox[{"\"\<IGHV357\>\"", ",", "\"\<FullSequence\>\""}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.59136156853856*^9, 3.591361589296039*^9}, {
+   3.591361649928464*^9, 3.591361662258258*^9}, 3.591361740381998*^9, {
+   3.591361840207081*^9, 3.59136184292785*^9}}],
+
+Cell["\<\
+What is the canonical name of this gene?\
+\>", "Text",
+ CellChangeTimes->{{3.5913663524787283`*^9, 3.591366370570788*^9}}],
+
+Cell[BoxData[
+ RowBox[{"GenomeData", "[", 
+  RowBox[{"\"\<IGHV357\>\"", ",", "\"\<Name\>\""}], "]"}]], "Input"],
+
+Cell["\<\
+On which chromosome is it located?\
+\>", "Text",
+ CellChangeTimes->{{3.5913663524787283`*^9, 3.591366379924334*^9}}],
+
+Cell[BoxData[
+ RowBox[{"GenomeData", "[", 
+  RowBox[{"\"\<IGHV357\>\"", ",", "\"\<Chromosome\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.591366324487646*^9, 3.591366326744337*^9}}],
+
+Cell["What is its GC ratio?", "Text",
+ CellChangeTimes->{{3.5913663524787283`*^9, 3.591366395280344*^9}}],
+
+Cell[BoxData[
+ RowBox[{"gcCount", "[", "genedata", "]"}]], "Input",
+ CellChangeTimes->{{3.5913617542576113`*^9, 3.591361762186864*^9}, {
+  3.591365487361953*^9, 3.591365490882146*^9}}],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 2}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 4}],
+
+Cell["\<\
+We will often have cause to save and load data to and from the disk.  Thus we \
+have the capability to save in a number of formats.  Plain text is \
+illustrated below.\
+\>", "Text",
+ CellChangeTimes->{{3.591366659261387*^9, 3.5913667020140467`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"zzz3data", "=", 
+   RowBox[{"GenomeData", "[", 
+    RowBox[{"\"\<ZZZ3\>\"", ",", "\"\<FullSequence\>\""}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.59136407034875*^9, 3.591364084630377*^9}, 
+   3.5913641180311327`*^9}],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<zzz3.dat\>\"", ",", "zzz3data"}], "]"}]], "Input",
+ CellChangeTimes->{{3.591364121213677*^9, 3.591364132170512*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ExpandFileName", "[", "\"\<zzz3.dat\>\"", "]"}]], "Input",
+ NumberMarks->False],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"zzz3load", "=", 
+   RowBox[{
+    RowBox[{"Import", "[", "\"\<zzz3.dat\>\"", "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.5913641900439177`*^9, 3.5913642599959183`*^9}, {
+  3.5913665156563597`*^9, 3.591366517110704*^9}}],
+
+Cell[BoxData[
+ RowBox[{"StringJoin", "[", 
+  RowBox[{
+   RowBox[{"Characters", "[", "zzz3load", "]"}], "/.", "DNARules"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.591366531856483*^9, 3.5913665491276207`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"gcCount", "[", "zzz3load", "]"}]], "Input",
+ CellChangeTimes->{{3.591366564987759*^9, 3.5913665691644993`*^9}}],
+
+Cell[TextData[{
+ "(If you need to convert from text to integers upon opening a file, please \
+use ",
+ StyleBox["ToExpression", "Input"],
+ ".)"
+}], "Text",
+ CellChangeTimes->{{3.5913675194298058`*^9, 3.5913675672142763`*^9}}],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 0.5}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 3}],
+
+Cell["We can also read and write Microsoft Excel files.", "Text",
+ CellChangeTimes->{{3.5913667357830048`*^9, 3.591366745751555*^9}, 
+   3.5913668551403837`*^9, {3.5913671288423433`*^9, 3.591367129409944*^9}}],
+
+Cell[BoxData[
+ RowBox[{"participants", "=", 
+  RowBox[{
+  "Import", "[", "\"\<~/Downloads/Attendees-8153604651.csv\>\"", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.591367195305173*^9, 3.591367208367516*^9}}],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 3}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 5}],
+
+Cell["\<\
+By Neal Davis for Computational Science & Engineering, University of Illinois \
+at Urbana\[Dash]Champaign.  Based on material by John Blischak for Software \
+Carpentry.\
+\>", "Text",
+ CellChangeTimes->{{3.5913678618327637`*^9, 3.591367899152137*^9}}]
+},
+WindowSize->{740, 867},
+WindowMargins->{{893, Automatic}, {156, Automatic}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 27, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 132, 1, 30, "Text"],
+Cell[692, 23, 198, 6, 28, "Input"],
+Cell[893, 31, 187, 4, 30, "Text"],
+Cell[1083, 37, 173, 3, 28, "Input"],
+Cell[1259, 42, 728, 13, 107, "Text"],
+Cell[1990, 57, 608, 13, 51, "Input"],
+Cell[2601, 72, 361, 10, 51, "Input"],
+Cell[2965, 84, 311, 6, 49, "Text"],
+Cell[3279, 92, 240, 5, 28, "Input"],
+Cell[3522, 99, 190, 4, 28, "Input"],
+Cell[3715, 105, 129, 2, 28, "Input"],
+Cell[3847, 109, 243, 5, 49, "Text"],
+Cell[4093, 116, 377, 8, 28, "Input"],
+Cell[4473, 126, 165, 3, 28, "Input"],
+Cell[4641, 131, 63, 1, 28, "Input"],
+Cell[4707, 134, 271, 9, 8, "Text"],
+Cell[4981, 145, 198, 4, 30, "Text"],
+Cell[5182, 151, 128, 2, 28, "Input"],
+Cell[5313, 155, 80, 1, 28, "Input"],
+Cell[5396, 158, 359, 8, 28, "Input"],
+Cell[5758, 168, 132, 3, 30, "Text"],
+Cell[5893, 173, 111, 2, 28, "Input"],
+Cell[6007, 177, 126, 3, 30, "Text"],
+Cell[6136, 182, 183, 3, 28, "Input"],
+Cell[6322, 187, 105, 1, 30, "Text"],
+Cell[6430, 190, 184, 3, 28, "Input"],
+Cell[6617, 195, 271, 9, 8, "Text"],
+Cell[6891, 206, 259, 5, 49, "Text"],
+Cell[7153, 213, 263, 7, 28, "Input"],
+Cell[7419, 222, 170, 3, 28, "Input"],
+Cell[7592, 227, 103, 2, 28, "Input"],
+Cell[7698, 231, 325, 8, 28, "Input"],
+Cell[8026, 241, 210, 5, 28, "Input"],
+Cell[8239, 248, 135, 2, 28, "Input"],
+Cell[8377, 252, 224, 6, 31, "Text"],
+Cell[8604, 260, 273, 9, 5, "Text"],
+Cell[8880, 271, 209, 2, 30, "Text"],
+Cell[9092, 275, 209, 5, 28, "Input"],
+Cell[9304, 282, 271, 9, 10, "Text"],
+Cell[9578, 293, 260, 5, 49, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)

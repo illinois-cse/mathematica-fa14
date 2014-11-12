@@ -1,0 +1,314 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      9775,        305]
+NotebookOptionsPosition[      8884,        274]
+NotebookOutlinePosition[      9242,        290]
+CellTagsIndexPosition[      9199,        287]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "Let us model a pendulum using the basic equation.  This will illustrate the \
+use of ",
+ StyleBox["DSolve", "Input"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.591373955027671*^9, 3.591373967719297*^9}, {
+  3.591374300977294*^9, 3.591374310241807*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"g", "=", "9.8"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[ScriptL]", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"simplePendEqn", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"\[Theta]", "''"}], "[", "t", "]"}], "+", 
+       RowBox[{
+        FractionBox["g", "\[ScriptL]"], 
+        RowBox[{"Sin", "[", 
+         RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}]}], "\[Equal]", "0"}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Theta]", "'"}], "[", "0", "]"}], "\[Equal]", "1"}]}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"soln", "=", 
+  RowBox[{"DSolve", "[", 
+   RowBox[{"simplePendEqn", ",", "\[Theta]", ",", "t"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.590488679051581*^9, 3.590488855528373*^9}, 
+   3.590489668109056*^9, 3.590489855057733*^9, 3.5904899742733*^9, {
+   3.590490284351467*^9, 3.590490314585516*^9}, 3.5913739718895607`*^9, {
+   3.591375156029294*^9, 3.591375159804991*^9}}],
+
+Cell["\<\
+It fails!  But why?  We have solved this in our introductory DE course.  We \
+forgot the small-angle approximation.\
+\>", "Text",
+ CellChangeTimes->{{3.591373978531714*^9, 3.5913740131944523`*^9}}],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 2}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 4}],
+
+Cell["A short digression to look at the small-angle approximation:", "Text",
+ CellChangeTimes->{{3.591373920226303*^9, 3.591373940062478*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Sin", "[", "x", "]"}], ",", "x"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", 
+     RowBox[{"0.25", "\[Pi]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.591373663161311*^9, 3.5913736924100437`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Animate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Sin", "[", 
+        FractionBox["x", "d"], "]"}], ",", 
+       FractionBox["x", "d"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"d", ",", 
+     RowBox[{"1", "/", "8"}], ",", "4"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.591373715028048*^9, 3.591373850602347*^9}}],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 2}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 4}],
+
+Cell["So, returning to our original model:", "Text",
+ CellChangeTimes->{{3.591374026059442*^9, 3.591374043264337*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"g", "=", "9.8"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[ScriptL]", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"simplePendEqn", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"\[Theta]", "''"}], "[", "t", "]"}], "+", 
+       RowBox[{
+        FractionBox["g", "\[ScriptL]"], 
+        RowBox[{"\[Theta]", "[", "t", "]"}]}]}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Theta]", "'"}], "[", "0", "]"}], "\[Equal]", "1"}]}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"sol", "=", 
+  RowBox[{"DSolve", "[", 
+   RowBox[{"simplePendEqn", ",", "\[Theta]", ",", "t"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.590488679051581*^9, 3.590488855528373*^9}, {
+   3.59048892241813*^9, 3.590488941562909*^9}, {3.590488973960394*^9, 
+   3.5904890116278353`*^9}, {3.590489159550055*^9, 3.5904891670783167`*^9}, {
+   3.590489646193694*^9, 3.590489652249975*^9}, {3.590489752150711*^9, 
+   3.5904897781923*^9}, 3.590490327299747*^9}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", 
+    RowBox[{
+     RowBox[{"\[Theta]", "[", "t", "]"}], "/.", "sol"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "25"}], "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "200"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", 
+    RowBox[{
+     RowBox[{"\[Theta]", "[", "t", "]"}], "/.", "sol"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "25"}], "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "200"}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", 
+    RowBox[{"1", "/", "5"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5913741924493923`*^9, 3.591374199207247*^9}}],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 2}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 4}],
+
+Cell["\<\
+The first equation (without the approximation) can be solved numerically, of \
+course, even if we haven\[CloseCurlyQuote]t the ingenuity to compress it into \
+closed form.\
+\>", "Text",
+ CellChangeTimes->{{3.59137413132421*^9, 3.5913741647656317`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"g", "=", "9.8"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[ScriptL]", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"simplePendEqn", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"\[Theta]", "''"}], "[", "t", "]"}], "+", 
+       RowBox[{
+        FractionBox["g", "\[ScriptL]"], 
+        RowBox[{"Sin", "[", 
+         RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}]}], "\[Equal]", "0"}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Theta]", "'"}], "[", "0", "]"}], "\[Equal]", "1"}]}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"soln", "=", 
+  RowBox[{"NDSolve", "[", 
+   RowBox[{"simplePendEqn", ",", "\[Theta]", ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", "25"}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.590488679051581*^9, 3.590488855528373*^9}, 
+   3.590489668109056*^9, 3.590489855057733*^9, 3.5904899742733*^9, {
+   3.590490284351467*^9, 3.590490314585516*^9}, 3.5913739718895607`*^9, 
+   3.591374219469673*^9}],
+
+Cell["This allows us to see how the solutions diverge over time.", "Text",
+ CellChangeTimes->{{3.591374231636712*^9, 3.5913742475108843`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"\[Theta]", "[", "t", "]"}], "/.", "sol"}], "]"}], ",", 
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"\[Theta]", "[", "t", "]"}], "/.", "soln"}], "]"}]}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "25"}], "}"}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", 
+    RowBox[{"1", "/", "5"}]}]}], "]"}]], "Input"],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 2}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 4}]
+},
+WindowSize->{740, 867},
+WindowMargins->{{Automatic, 905}, {170, Automatic}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 27, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 267, 7, 31, "Text"],
+Cell[827, 29, 1199, 31, 171, "Input"],
+Cell[2029, 62, 207, 4, 49, "Text"],
+Cell[2239, 68, 271, 9, 8, "Text"],
+Cell[2513, 79, 142, 1, 30, "Text"],
+Cell[2658, 82, 317, 9, 28, "Input"],
+Cell[2978, 93, 744, 23, 76, "Input"],
+Cell[3725, 118, 271, 9, 8, "Text"],
+Cell[3999, 129, 118, 1, 30, "Text"],
+Cell[4120, 132, 1238, 31, 171, "Input"],
+Cell[5361, 165, 343, 9, 28, "Input"],
+Cell[5707, 176, 486, 12, 46, "Input"],
+Cell[6196, 190, 271, 9, 8, "Text"],
+Cell[6470, 201, 262, 5, 49, "Text"],
+Cell[6735, 208, 1238, 33, 171, "Input"],
+Cell[7976, 243, 142, 1, 30, "Text"],
+Cell[8121, 246, 485, 15, 46, "Input"],
+Cell[8609, 263, 271, 9, 8, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)

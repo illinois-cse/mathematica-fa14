@@ -1,0 +1,502 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     15345,        493]
+NotebookOptionsPosition[     14164,        448]
+NotebookOutlinePosition[     14519,        464]
+CellTagsIndexPosition[     14476,        461]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ StyleBox["Mathematica ",
+  FontSlant->"Italic"],
+ "Basics"
+}], "Section",
+ CellChangeTimes->{{3.5906960944568233`*^9, 3.59069616648215*^9}, {
+  3.5906963986261578`*^9, 3.590696421246197*^9}, {3.590696803202731*^9, 
+  3.590696805580867*^9}, {3.5906969120149546`*^9, 3.590696960578732*^9}, {
+  3.6247962251654367`*^9, 3.6247962399760017`*^9}, {3.624812522763101*^9, 
+  3.624812523649404*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Almost every built-in function, constant, etc. in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " begins with a Capital Letter.  In fact, if ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " recognises the input as a function or constant the font color is changed \
+to black.  (Thus blue names are unidentifiable to ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " currently.)"
+}], "Item",
+ CellChangeTimes->{{3.5906968632791667`*^9, 3.5906969034864664`*^9}, {
+   3.5906969650639887`*^9, 3.590697102626857*^9}, 3.5907004670632915`*^9, {
+   3.624812295672578*^9, 3.624812342059026*^9}}],
+
+Cell["Evaluate your input using SHIFT + ENTER", "Item",
+ CellChangeTimes->{{3.5906968632791667`*^9, 3.590696878761052*^9}}]
+}, Open  ]],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 0.5}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 3}],
+
+Cell[CellGroupData[{
+
+Cell["Exercises, Part 1", "Subsection",
+ CellChangeTimes->{{3.624812527449828*^9, 3.62481255407788*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Using ", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox["Mathematica", "Text",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox["\[CloseCurlyQuote]s Simplify function, show a concise form of the \
+following:\n\n", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"1", "+", 
+       FractionBox["1", 
+        RowBox[{"1", "+", 
+         FractionBox["1", 
+          RowBox[{"1", "+", 
+           FractionBox["1", 
+            RowBox[{"1", "+", "x"}]]}]]}]]}]], "=", "?"}],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text"], "Text"]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812429950581*^9}}],
+
+Cell[TextData[{
+ StyleBox["Expand ", "Text"],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", "x"}], " ", "+", " ", "1"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"3", " ", "x"}], " ", "-", " ", "1"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"x", " ", "-", " ", "1"}], ")"}]}], TraditionalForm]]],
+ " ",
+ StyleBox["to  its regular polynomial form.  Store this statement in a \
+function ", "Text"],
+ StyleBox["f", "Text",
+  FontSlant->"Italic"],
+ StyleBox[".  Plot the function from ", "Text"],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"-", "1"}], "\[LessEqual]", "x", "\[LessEqual]", 
+    FractionBox["3", "2"]}], TraditionalForm]]],
+ "."
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812432140959*^9}, {
+  3.624812612798665*^9, 3.624812615524178*^9}}],
+
+Cell[TextData[{
+ StyleBox["Using the same function ", "Text"],
+ StyleBox[Cell[BoxData[
+  FormBox["f", TraditionalForm]], "Text"], "Text"],
+ StyleBox[", solve for ", "Text"],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"f", "(", "x", ")"}], "\[Equal]", "0"}], TraditionalForm]], 
+  "Text"], "Text"],
+ StyleBox[" and confirm the roots using ", "Text"],
+ Cell[BoxData[
+  FormBox["Factor", TraditionalForm]]],
+ StyleBox[".", "Text"]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.6248124372933283`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Find ", "Text"],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     RowBox[{"f", "'"}], 
+     RowBox[{"(", "x", ")"}]}],
+    FontWeight->"Plain"], TraditionalForm]], "Text",
+  FontWeight->"Bold",
+  FontColor->RGBColor[0., 0., 0.]], "Text"],
+ StyleBox[".  Note what happens when you actually type f\[CloseCurlyQuote][x] \
+and evaluate.", "Text"]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812442603257*^9}, {
+  3.6248141569825697`*^9, 3.624814175212751*^9}}],
+
+Cell[TextData[{
+ StyleBox["Evaluate the 1st and 2nd drivative of ", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   RowBox[{"f", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"Sin", "(", "x", ")"}], "/", "x"}]}], TraditionalForm]], "Text",
+  FontWeight->"Bold",
+  FontColor->RGBColor[0., 0., 0.]], "Text"]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812442603257*^9}, {
+  3.6248141569825697`*^9, 3.6248141575437813`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Evaluate the integral ", "Text"],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     SubsuperscriptBox["\[Integral]", 
+      RowBox[{
+       RowBox[{"-", "1"}], "/", "2"}], 
+      RowBox[{"1", "/", "3"}]], 
+     RowBox[{
+      RowBox[{"f", "(", "x", ")"}], 
+      RowBox[{"\[DifferentialD]", "x"}]}]}],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text"], "Text"],
+ StyleBox[".", "Text"]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.6248124593289423`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Reduce the inequality ", "Text"],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["x", "3"], "-", 
+    RowBox[{"3", " ", 
+     SuperscriptBox["x", "2"]}]}], TraditionalForm]], "Text",
+  FontColor->RGBColor[0., 0., 0.]], "Text"],
+ StyleBox["+5<0.", "Text",
+  FontWeight->"Bold",
+  FontColor->RGBColor[0., 0., 0.]]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.6248124604578667`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Evaluate the integral ", "Text"],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     SubsuperscriptBox["\[Integral]", 
+      RowBox[{"-", "1"}], "1"], 
+     RowBox[{
+      SubsuperscriptBox["\[Integral]", 
+       RowBox[{"-", "1"}], "1"], 
+      RowBox[{
+       RowBox[{"Cos", "(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         SuperscriptBox["y", "2"], "+", 
+         RowBox[{"x", " ", "y"}]}], ")"}], 
+       RowBox[{"\[DifferentialD]", "x"}], 
+       RowBox[{
+        RowBox[{"\[DifferentialD]", "y"}], "."}]}]}]}],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text"], "Text"]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812469953446*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exercises, Part 2", "Subsection",
+ CellChangeTimes->{{3.624812527449828*^9, 3.624812560253448*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Produce a list of the first 30 Fibonacci Numbers.", \
+"Text",
+ FontColor->RGBColor[0.5019607843137255, 0., 0.]]], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.6248125028038483`*^9}, {
+  3.6248125634451227`*^9, 3.624812571771895*^9}}],
+
+Cell[TextData[{
+ StyleBox["Find the root of the equation ", "Text"],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     RowBox[{"Sin", "(", "x", ")"}], "=", 
+     RowBox[{"x", "-", "1"}]}],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text"], "Text"],
+ StyleBox[".", "Text"]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812503036809*^9}, {
+  3.6248138485045347`*^9, 3.6248138485086613`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Find the roots of the following equation:\n", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["x", "4"], "-", 
+     RowBox[{"3", " ", 
+      SuperscriptBox["x", "3"]}], "+", 
+     RowBox[{"2", " ", "x"}], " ", "+", " ", "10"}], " ", "=", " ", "0"}], 
+   TraditionalForm]], "Text",
+  FontWeight->"Bold",
+  FontColor->RGBColor[0., 0., 0.]], "Text"],
+ StyleBox["\nAnd the system, where a = 0.7 and a = 0.10\n", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["x", "2"], "+", 
+     SuperscriptBox["y", "2"]}], "=", "1"}], TraditionalForm]], "Text",
+  FontWeight->"Bold",
+  FontColor->RGBColor[0., 0., 0.]], "Text"],
+ StyleBox[" and ", "Text",
+  FontWeight->"Bold",
+  FontColor->RGBColor[0., 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"x", "+", "y"}], "=", "a"}], TraditionalForm]], "Text",
+  FontWeight->"Bold",
+  FontColor->RGBColor[0., 0., 0.]], "Text"],
+ StyleBox["\n(Hint:  use a List in the first argument of FindRoot.)", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812503036809*^9}, {
+  3.6248138485045347`*^9, 3.624813900055171*^9}}],
+
+Cell[TextData[{
+ StyleBox["Consider ", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     RowBox[{
+      StyleBox["f",
+       FontSlant->"Plain"], "(", 
+      RowBox[{"x", ",", "y"}], ")"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sin", "(", 
+        RowBox[{"x", "+", "y"}], ")"}], " ", 
+       RowBox[{"Cos", "(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "-", "y"}], ")"}]}], "-", 
+      RowBox[{"Sin", "(", "y", ")"}]}]}],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]], "Text"],
+ StyleBox[" and generate the graphs of\n", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[DifferentialD]", "2"], "f"}], 
+     RowBox[{
+      RowBox[{"\[DifferentialD]", "x"}], 
+      RowBox[{"\[PartialD]", "y"}]}]],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]], "Text"],
+ StyleBox[" over the rectangle ", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     RowBox[{"-", "\[Pi]"}], "\[LessEqual]", " ", 
+     StyleBox["x",
+      FontSlant->"Plain"], "\[LessEqual]", " ", 
+     StyleBox["\[Pi]",
+      FontSlant->"Plain"]}],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]], "Text"],
+ StyleBox[" and ", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     RowBox[{"-", "\[Pi]"}], "\[LessEqual]", 
+     StyleBox["y",
+      FontSlant->"Plain"], "\[LessEqual]", 
+     StyleBox["\[Pi]",
+      FontSlant->"Plain"]}],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]], "Text"],
+ StyleBox[" . Find the maximum of the function ", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[DifferentialD]", "2"], "f"}], 
+     RowBox[{
+      RowBox[{"\[DifferentialD]", "x"}], 
+      RowBox[{"\[PartialD]", "y"}]}]],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]], "Text"],
+ StyleBox[" in this area.", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812503036809*^9}, {
+  3.6248138485045347`*^9, 3.62481384952054*^9}, {3.624814182732408*^9, 
+  3.62481418432096*^9}}],
+
+Cell[TextData[{
+ StyleBox["Evaluate the integral ", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"\[Integral]", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Cos", "(", "x", ")"}], "/", "x"}], "-", 
+        RowBox[{
+         RowBox[{"Sin", "(", "x", ")"}], "/", 
+         SuperscriptBox["x", "2"]}]}], ")"}], 
+      RowBox[{"\[DifferentialD]", "x", "   "}]}]}],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]], "Text"]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812503036809*^9}, {
+  3.6248138485045347`*^9, 3.62481384952054*^9}, {3.624814182732408*^9, 
+  3.624814190414599*^9}}],
+
+Cell[TextData[{
+ StyleBox["Evaluate the limit ", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     SubsuperscriptBox["   ", 
+      RowBox[{"x", "\[RightArrow]", 
+       RowBox[{
+        RowBox[{"-", "9"}], "/", "2"}]}], "lim"], 
+     FractionBox[
+      RowBox[{
+       RowBox[{"2", " ", 
+        SuperscriptBox["x", "2"]}], "+", 
+       RowBox[{"25", " ", "x"}], " ", "+", " ", "72"}], 
+      RowBox[{"72", " ", "-", 
+       RowBox[{"47", "x"}], " ", "-", 
+       RowBox[{"14", 
+        SuperscriptBox["x", "2"]}]}]]}],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0., 0., 0.]], TraditionalForm]], "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]], "Text"],
+ StyleBox[" ", "Text",
+  FontColor->RGBColor[0.5019607843137255, 0., 0.]],
+ StyleBox[".  Use the palettes to find the limit function.", "Text"]
+}], "Item",
+ CellChangeTimes->{{3.624812408384259*^9, 3.624812503036809*^9}, {
+  3.6248138485045347`*^9, 3.62481384952054*^9}, {3.624814182732408*^9, 
+  3.624814204697453*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1020, 852},
+WindowMargins->{{Automatic, 2}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 27, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 407, 9, 80, "Section"],
+Cell[CellGroupData[{
+Cell[1011, 35, 621, 15, 45, "Item"],
+Cell[1635, 52, 123, 1, 28, "Item"]
+}, Open  ]],
+Cell[1773, 56, 273, 9, 5, "Text"],
+Cell[CellGroupData[{
+Cell[2071, 69, 104, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[2200, 74, 840, 24, 106, "Item"],
+Cell[3043, 100, 838, 27, 37, "Item"],
+Cell[3884, 129, 523, 15, 29, "Item"],
+Cell[4410, 146, 515, 15, 29, "Item"],
+Cell[4928, 163, 482, 12, 29, "Item"],
+Cell[5413, 177, 546, 17, 37, "Item"],
+Cell[5962, 196, 437, 13, 30, "Item"],
+Cell[6402, 211, 758, 23, 35, "Item"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7209, 240, 105, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[7339, 245, 264, 4, 28, "Item"],
+Cell[7606, 251, 457, 13, 29, "Item"],
+Cell[8066, 266, 1347, 37, 107, "Item"],
+Cell[9416, 305, 2834, 83, 70, "Item"],
+Cell[12253, 390, 802, 22, 34, "Item"],
+Cell[13058, 414, 1066, 29, 45, "Item"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

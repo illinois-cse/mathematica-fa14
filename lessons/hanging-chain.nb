@@ -1,0 +1,516 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     18156,        507]
+NotebookOptionsPosition[     17124,        471]
+NotebookOutlinePosition[     17480,        487]
+CellTagsIndexPosition[     17437,        484]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Bessel Equations", "Section",
+ CellChangeTimes->{{3.6247185164171143`*^9, 3.6247185322562437`*^9}, 
+   3.624719240427103*^9}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"BesselJ", "[", 
+    RowBox[{"0", ",", "x"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", 
+     RowBox[{"BesselJZero", "[", 
+      RowBox[{"0", ",", "4"}], "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.624717927649597*^9, 3.624717960052992*^9}, {
+  3.62471811021091*^9, 3.624718140970524*^9}, {3.624718211531588*^9, 
+  3.624718240908284*^9}, {3.624718556611425*^9, 3.624718568096364*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"BesselJ", "[", 
+      RowBox[{"0", ",", "x"}], "]"}], ",", 
+     RowBox[{"BesselJ", "[", 
+      RowBox[{"1", ",", "x"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", 
+     RowBox[{"BesselJZero", "[", 
+      RowBox[{"0", ",", "4"}], "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.624718577515421*^9, 3.624718585786436*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"BesselJ", "[", 
+    RowBox[{"n", ",", "x"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"n", ",", "4"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{3.62471901470607*^9}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"BesselJ", "[", 
+      RowBox[{"n", ",", "x"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "4"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", 
+     RowBox[{"BesselJZero", "[", 
+      RowBox[{"0", ",", "4"}], "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.624719031041873*^9, 3.6247190324728947`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"BesselJ", "[", 
+       RowBox[{"n", ",", "x"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "4"}], "}"}]}], "]"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", 
+     RowBox[{"BesselJZero", "[", 
+      RowBox[{"0", ",", "4"}], "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.624718364649428*^9, 3.624718411784478*^9}, {
+   3.6247184759534683`*^9, 3.624718482751992*^9}, 3.624726832688573*^9}],
+
+Cell[BoxData[
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"BesselJ", "[", 
+      RowBox[{"n", ",", "x"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", 
+       RowBox[{"BesselJZero", "[", 
+        RowBox[{"0", ",", "4"}], "]"}]}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"n", ",", "0", ",", "4"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.624717927649597*^9, 3.624717960052992*^9}, {
+  3.62471811021091*^9, 3.624718140970524*^9}, {3.624718211531588*^9, 
+  3.624718240908284*^9}, {3.6247191025638103`*^9, 3.624719103122232*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Example:  A Hanging Chain", "Subsection",
+ CellChangeTimes->{{3.624719231181674*^9, 3.624719236939233*^9}}],
+
+Cell[TextData[{
+ "A chain hanging secured at one end can be described in its modes of free \
+vibration by the Bessel equation ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["d", "2"], "u", " "}], 
+      SuperscriptBox["dz", "2"]], "+", 
+     RowBox[{
+      FractionBox["1", "z"], 
+      FractionBox[
+       RowBox[{"du", " "}], "dz"]}], "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", 
+        FractionBox[
+         SuperscriptBox["n", "2"], 
+         SuperscriptBox["z", "2"]]}], ")"}], 
+      RowBox[{"u", "(", 
+       RowBox[{"z", ",", "t"}], ")"}]}]}], "=", 
+    RowBox[{"m", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["d", "2"], "u", " "}], 
+      SuperscriptBox["dt", "2"]]}]}], TraditionalForm]]],
+ ", which has solutions in ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["J", "n"], "(", "z", ")"}], TraditionalForm]]],
+ " for the intuitive boundary conditions of one end stationary, ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"u", "(", 
+     RowBox[{
+      RowBox[{"z", "=", "L"}], ",", "t"}], ")"}], "=", "0"}], 
+   TraditionalForm]]],
+ " (substitutions are necessary in this derivation).  We wish to find and \
+plot the first few stationary modes of vibration [",
+ ButtonBox["ref",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://webpages.ursinus.edu/lriley/courses/p212/lectures/node14.\
+html"], None},
+  ButtonNote->
+   "http://webpages.ursinus.edu/lriley/courses/p212/lectures/node14.html"],
+ "]."
+}], "Text",
+ CellChangeTimes->{{3.6247207770602913`*^9, 3.6247209402231607`*^9}, {
+  3.624720977891082*^9, 3.624721062446188*^9}, {3.624721100185885*^9, 
+  3.624721115585978*^9}, {3.624726204117708*^9, 3.624726205779457*^9}, {
+  3.62472702017833*^9, 3.624727040217503*^9}, {3.624730332800211*^9, 
+  3.6247303774030437`*^9}}],
+
+Cell["\<\
+First, solve the time-independent differential equation analytically.\
+\>", "Text",
+ CellChangeTimes->{{3.624721182687726*^9, 3.6247212035264597`*^9}, {
+  3.624730062325006*^9, 3.624730066803954*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"z", ",", "u", ",", "sol"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"L", " ", "=", " ", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"chainEqns", " ", "=", " ", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["z", "2"], 
+       RowBox[{
+        RowBox[{"u", "''"}], "[", "z", "]"}]}], "+", 
+      RowBox[{"z", " ", 
+       RowBox[{
+        RowBox[{"u", "'"}], "[", "z", "]"}]}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["z", "2"], "-", 
+         SuperscriptBox["n", "2"]}], ")"}], 
+       RowBox[{"u", "[", "z", "]"}]}]}], "\[Equal]", "0"}], 
+    "\[IndentingNewLine]", "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.624711882419407*^9, 3.6247120688033123`*^9}, {
+   3.624712106036875*^9, 3.624712166900741*^9}, {3.62471786019976*^9, 
+   3.624717897399403*^9}, {3.624719261942325*^9, 3.624719268862164*^9}, {
+   3.62471932257537*^9, 3.6247193367986727`*^9}, {3.62471940140265*^9, 
+   3.624719484713153*^9}, {3.624719516402643*^9, 3.624719731021456*^9}, {
+   3.624719787911529*^9, 3.6247198339196577`*^9}, 3.6247198658650723`*^9, {
+   3.624720159689279*^9, 3.624720174277026*^9}, {3.624720261038981*^9, 
+   3.6247203305829906`*^9}, {3.6247204114181147`*^9, 
+   3.6247204117446117`*^9}, {3.624720516379451*^9, 3.6247205254901752`*^9}, 
+   3.624723421122299*^9, {3.6247262458549423`*^9, 3.624726267150319*^9}, {
+   3.624726484435226*^9, 3.624726515834826*^9}, {3.624726789864452*^9, 
+   3.62472679040653*^9}, {3.6247268840117273`*^9, 3.6247268918817463`*^9}, {
+   3.6247269592579813`*^9, 3.624726969866316*^9}, {3.624727191430903*^9, 
+   3.624727198046856*^9}, 3.624728356876058*^9, {3.624728530855777*^9, 
+   3.6247285316040382`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"sol", "=", "\[IndentingNewLine]", 
+  RowBox[{"DSolve", "[", "\[IndentingNewLine]", 
+   RowBox[{
+   "chainEqns", ",", "\[IndentingNewLine]", "u", ",", "\[IndentingNewLine]", 
+    "z"}], "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.624726976809072*^9, 3.624726982322414*^9}}],
+
+Cell[TextData[{
+ "Solution with a time component renders this a second-order PDE, which is \
+often outside the reach of a general analytical solution for a computer \
+algebra package like ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ":"
+}], "Text",
+ CellChangeTimes->{{3.624721182687726*^9, 3.6247212035264597`*^9}, {
+  3.624728570781625*^9, 3.62472860033193*^9}, {3.624730074643855*^9, 
+  3.624730082404158*^9}, {3.6247303991935043`*^9, 3.6247304036895447`*^9}, {
+  3.624730813417609*^9, 3.624730897921892*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"z", ",", "u", ",", "sol"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"L", " ", "=", " ", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"chainEqns", " ", "=", " ", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["z", "2"], 
+       RowBox[{"D", "[", 
+        RowBox[{
+         RowBox[{"u", "[", 
+          RowBox[{"z", ",", "t"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"z", ",", "2"}], "}"}]}], "]"}]}], "+", 
+      RowBox[{"z", " ", 
+       RowBox[{"D", "[", " ", 
+        RowBox[{
+         RowBox[{"u", "[", 
+          RowBox[{"z", ",", "t"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"z", ",", "1"}], "}"}]}], "]"}]}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        SuperscriptBox["z", "2"], ")"}], 
+       RowBox[{"u", "[", 
+        RowBox[{"z", ",", "t"}], "]"}]}]}], "\[Equal]", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"u", "[", 
+        RowBox[{"z", ",", "t"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "2"}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+    "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.624711882419407*^9, 3.6247120688033123`*^9}, {
+   3.624712106036875*^9, 3.624712166900741*^9}, {3.62471786019976*^9, 
+   3.624717897399403*^9}, {3.624719261942325*^9, 3.624719268862164*^9}, {
+   3.62471932257537*^9, 3.6247193367986727`*^9}, {3.62471940140265*^9, 
+   3.624719484713153*^9}, {3.624719516402643*^9, 3.624719731021456*^9}, {
+   3.624719787911529*^9, 3.6247198339196577`*^9}, 3.6247198658650723`*^9, {
+   3.624720159689279*^9, 3.624720174277026*^9}, {3.624720261038981*^9, 
+   3.6247203305829906`*^9}, {3.6247204114181147`*^9, 
+   3.6247204117446117`*^9}, {3.624720516379451*^9, 3.6247205254901752`*^9}, 
+   3.624723421122299*^9, {3.6247262458549423`*^9, 3.624726267150319*^9}, {
+   3.624726484435226*^9, 3.624726515834826*^9}, {3.624726789864452*^9, 
+   3.62472679040653*^9}, {3.6247268840117273`*^9, 3.6247268918817463`*^9}, {
+   3.6247269592579813`*^9, 3.624726969866316*^9}, {3.624727191430903*^9, 
+   3.624727198046856*^9}, 3.624728356876058*^9, {3.624728530855777*^9, 
+   3.6247285316040382`*^9}, {3.624728607533914*^9, 3.624728624549635*^9}, {
+   3.624730094648183*^9, 3.6247301120626698`*^9}, {3.6247302199538593`*^9, 
+   3.6247302697214813`*^9}, {3.62473055107885*^9, 3.624730571799799*^9}}],
+
+Cell[BoxData[
+ RowBox[{"sol", "=", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"DSolve", "[", "\[IndentingNewLine]", 
+    RowBox[{
+    "chainEqns", ",", "\[IndentingNewLine]", "u", ",", "\[IndentingNewLine]", 
+     
+     RowBox[{"{", 
+      RowBox[{"z", ",", "t"}], "}"}]}], "\[IndentingNewLine]", "]"}], "//", 
+   "TraditionalForm"}]}]], "Input",
+ CellChangeTimes->{{3.624726976809072*^9, 3.624726982322414*^9}, {
+  3.624728585133072*^9, 3.624728592628536*^9}, {3.6247286315888987`*^9, 
+  3.624728687870109*^9}, {3.6247289281438837`*^9, 3.62472899145152*^9}, {
+  3.624730275937023*^9, 3.624730282873444*^9}, {3.624730482029426*^9, 
+  3.62473051272285*^9}}],
+
+Cell[TextData[{
+ "However, we can solve this via the method of separation of variables and \
+achieve an analytical solution.  ",
+ "The time-dependent solution to the problem may be expressed generally as ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{
+    OverscriptBox["x", "_"], 
+    RowBox[{"(", 
+     RowBox[{"n", ",", "z", ",", "t"}], ")"}]}], "=", 
+   RowBox[{
+    SubscriptBox["J", "0"], 
+    RowBox[{"(", 
+     RowBox[{
+      SubscriptBox["z", "n"], 
+      SqrtBox[
+       FractionBox["z", "L"]]}], ")"}], "cos", 
+    RowBox[{"(", 
+     RowBox[{
+      FractionBox[
+       RowBox[{
+        SubscriptBox["z", "n"], "t"}], "2"], 
+      SqrtBox[
+       FractionBox["g", "L"]]}], ")"}]}]}]],
+  CellChangeTimes->{
+   3.6247235941809053`*^9, {3.624723624291656*^9, 3.624723817871099*^9}, {
+    3.624723996171474*^9, 3.624723999001564*^9}, {3.62472485352831*^9, 
+    3.62472485402715*^9}, {3.6247253871047564`*^9, 3.624725388591607*^9}, {
+    3.624725444937594*^9, 3.624725447190235*^9}}],
+ ", where ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "n"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "is the ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ "th zero of ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["J", "0"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.62472605127461*^9, 3.6247261583308496`*^9}, {
+  3.624727055075081*^9, 3.6247270575472803`*^9}, {3.6247309195877733`*^9, 
+  3.624730920186549*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   SubscriptBox["z", "n_"], ":=", 
+   RowBox[{"BesselJZero", "[", 
+    RowBox[{"0", ",", "n"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"g", "=", "9.8"}], ";", " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"m", "/", 
+     SuperscriptBox["s", "2"]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"L", "=", "1"}], ";"}], " ", 
+  RowBox[{"(*", " ", "m", " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   OverscriptBox["x", "_"], "[", 
+   RowBox[{"n_", ",", "Z_", ",", "t_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"BesselJ", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{
+      SubscriptBox["z", "n"], 
+      SqrtBox[
+       FractionBox["Z", "L"]]}]}], "]"}], 
+   RowBox[{"Cos", "[", 
+    RowBox[{
+     FractionBox[
+      RowBox[{
+       SubscriptBox["z", "n"], "t"}], "2"], 
+     SqrtBox[
+      FractionBox["g", "L"]]}], "]"}]}]}]}], "Input",
+ CellChangeTimes->{
+  3.6247235941809053`*^9, {3.624723624291656*^9, 3.624723817871099*^9}, {
+   3.624723996171474*^9, 3.624723999001564*^9}, {3.62472485352831*^9, 
+   3.62472485402715*^9}, {3.6247253871047564`*^9, 3.624725388591607*^9}, {
+   3.624725444937594*^9, 3.624725447190235*^9}, {3.624727063060185*^9, 
+   3.6247270649324503`*^9}, {3.624795136019046*^9, 3.624795138642127*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", "\[IndentingNewLine]", 
+    RowBox[{"Table", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       OverscriptBox["x", "_"], "[", 
+       RowBox[{"n", ",", "Z", ",", "0"}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "4"}], "}"}]}], "\[IndentingNewLine]", "]"}], 
+    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"Z", ",", "0", ",", "L"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "L"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"AspectRatio", "\[Rule]", 
+    RowBox[{"1", "/", "5"}]}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.624723824180484*^9, 3.624723924617399*^9}, {
+   3.6247248682227383`*^9, 3.62472486875839*^9}, {3.624724911184739*^9, 
+   3.624724939000205*^9}, 3.6247251654139223`*^9, 3.624725206901555*^9, 
+   3.624725242693789*^9, {3.6247253750150213`*^9, 3.624725378599334*^9}, {
+   3.6247254750503902`*^9, 3.6247255305377283`*^9}, {3.624725584324627*^9, 
+   3.624725603386778*^9}, {3.6247270685802*^9, 3.624727070115458*^9}, {
+   3.62479520381437*^9, 3.624795206243207*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Animate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      OverscriptBox["x", "_"], "[", 
+      RowBox[{"2", ",", "Z", ",", "t"}], "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"Z", ",", "0", ",", "L"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "L"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AspectRatio", "\[Rule]", 
+      RowBox[{"1", "/", "5"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "\[Pi]"}]}], "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",\
+
+ CellChangeTimes->{{3.6247249427758017`*^9, 3.624724963936355*^9}, {
+  3.624725031290654*^9, 3.624725039569846*^9}, {3.624725076995453*^9, 
+  3.624725077354486*^9}, {3.624725121036735*^9, 3.62472515544394*^9}, {
+  3.624725697806456*^9, 3.6247257327106733`*^9}, {3.624725770110916*^9, 
+  3.624725835285696*^9}, {3.624725908000801*^9, 3.6247260371700993`*^9}, {
+  3.6247270722594748`*^9, 3.624727073579224*^9}, {3.6247950934508657`*^9, 
+  3.624795105207932*^9}, {3.624795164929142*^9, 3.6247951849176807`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{772, 852},
+WindowMargins->{{Automatic, 293}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 27, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 131, 2, 80, "Section"],
+Cell[713, 26, 476, 11, 28, "Input"],
+Cell[1192, 39, 450, 13, 28, "Input"],
+Cell[1645, 54, 231, 7, 28, "Input"],
+Cell[1879, 63, 450, 13, 28, "Input"],
+Cell[2332, 78, 564, 15, 28, "Input"],
+Cell[2899, 95, 607, 15, 28, "Input"],
+Cell[CellGroupData[{
+Cell[3531, 114, 113, 1, 44, "Subsection"],
+Cell[3647, 117, 1858, 56, 104, "Text"],
+Cell[5508, 175, 210, 4, 30, "Text"],
+Cell[5721, 181, 1826, 39, 111, "Input"],
+Cell[7550, 222, 316, 6, 114, "Input"],
+Cell[7869, 230, 520, 11, 49, "Text"],
+Cell[8392, 243, 2436, 54, 111, "Input"],
+Cell[10831, 299, 659, 14, 114, "Input"],
+Cell[11493, 315, 1460, 46, 97, "Text"],
+Cell[12956, 363, 1300, 37, 118, "Input"],
+Cell[14259, 402, 1419, 31, 199, "Input"],
+Cell[15681, 435, 1415, 32, 165, "Input"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

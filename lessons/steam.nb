@@ -1,0 +1,662 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     21673,        653]
+NotebookOptionsPosition[     20380,        611]
+NotebookOutlinePosition[     20766,        628]
+CellTagsIndexPosition[     20723,        625]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Curve Fitting to Steam Table Enthalpy Data\
+\>", "Subsection",
+ CellChangeTimes->{{3.5917135254299717`*^9, 3.59171353734202*^9}}],
+
+Cell["\<\
+Extract the steam table data from the Excel file at the following URL:\
+\>", "Text",
+ CellChangeTimes->{{3.591705357518303*^9, 3.591705379719633*^9}, {
+  3.5917138399444923`*^9, 3.591713865042262*^9}, {3.591714481302993*^9, 
+  3.59171450724082*^9}, {3.6248146350594177`*^9, 3.624814642164061*^9}}],
+
+Cell[BoxData[
+ RowBox[{"steamdata", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+    "Import", "[", 
+     "\"\<http://www.ohio.edu/mechanical/thermo/property_tables/H2O/H2O_\
+TempSat.xls\>\"", "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "//", "TableForm"}]}]], "Input",
+ CellChangeTimes->{{3.5917047745642967`*^9, 3.591704858966536*^9}, 
+   3.6248146291812077`*^9}],
+
+Cell[BoxData[
+ RowBox[{"Dimensions", "[", 
+  RowBox[{"Part", "[", 
+   RowBox[{"steamdata", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "All"}], "]"}], "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.5917050646375713`*^9, 3.591705079282996*^9}}],
+
+Cell["\<\
+Only bother with the numerical data; strip out the extraneous text.\
+\>", "Text",
+ CellChangeTimes->{{3.5917053888740177`*^9, 3.591705398209874*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"steamT", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "1"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamP", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "2"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamVf", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "3"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamVg", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "4"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamUf", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "5"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamUg", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "6"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamHf", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "7"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamHfg", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "8"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamHg", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "9"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamSf", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "10"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamSfg", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "11"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamSg", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"steamdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", 
+       RowBox[{"4", ";;", "52"}], ",", "12"}], "]"}], "]"}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.591705167238615*^9, 3.5917051988993797`*^9}, {
+  3.591705229887122*^9, 3.5917053183229017`*^9}, {3.5917112634609222`*^9, 
+  3.591711294063622*^9}}],
+
+Cell["\<\
+Let\[CloseCurlyQuote]s plot the data for the enthalpy versus temperature.\
+\>", "Text",
+ CellChangeTimes->{{3.591712897817272*^9, 3.591712908745328*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"steamT", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"steamHf", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"steamT", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"steamHfg", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"steamT", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"steamHg", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}]}], "}"}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"AspectRatio", "\[Rule]", 
+    RowBox[{"1", "/", "3"}]}], ",", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Temperature T\>\"", ",", "\"\<Enthalpy H\>\""}], "}"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.591705403050942*^9, 3.591705421601509*^9}, {
+  3.591705454810996*^9, 3.591705455717244*^9}, {3.591710883845955*^9, 
+  3.591710899031312*^9}, {3.5917111136659927`*^9, 3.591711139996138*^9}, {
+  3.591711174263433*^9, 3.591711183665833*^9}, {3.5917113306345863`*^9, 
+  3.591711444376236*^9}, {3.591711725139966*^9, 3.5917117758092327`*^9}}],
+
+Cell["\<\
+We can fit these data to basic functions and see how well we do.\
+\>", "Text",
+ CellChangeTimes->{{3.591712919099725*^9, 3.5917129298838463`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Fit", "[", 
+  RowBox[{
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"steamT", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", 
+       RowBox[{"steamHg", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "x", ",", 
+     SuperscriptBox["x", "2"]}], "}"}], ",", "x"}], "]"}]], "Input",
+ CellChangeTimes->{{3.591711795456813*^9, 3.591711852185769*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"2428.264940496872`", "\[VeryThinSpace]", "+", 
+    RowBox[{"3.986746283222075`", " ", "x"}], "-", 
+    RowBox[{"0.010648806902410924`", " ", 
+     SuperscriptBox["x", "2"]}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "2059.1137353384674`"}], ",", "2433.4980508545523`"}], 
+    "}"}]}], "]"}]], "Input",
+ NumberMarks->False],
+
+Cell["\<\
+Of course, we\[CloseCurlyQuote]d like to actually see that next to the data.  \
+How might we construct that?\
+\>", "Text",
+ CellChangeTimes->{{3.591712953008548*^9, 3.591712967384775*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"steamHgPlot", "=", 
+   RowBox[{"ListPlot", "[", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"steamT", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"steamHg", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], "}"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamHgFitPlot", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{"Fit", "[", 
+       RowBox[{
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"steamT", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], ",", 
+            RowBox[{"steamHg", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", 
+            RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "x", ",", 
+          SuperscriptBox["x", "2"], ",", 
+          SuperscriptBox["x", "3"]}], "}"}], ",", "x"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "400"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"steamHgPlot", ",", "steamHgFitPlot", ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "400"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"2000", ",", "3000"}], "}"}]}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"AspectRatio", "\[Rule]", 
+    RowBox[{"1", "/", "3"}]}], ",", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Temperature T\>\"", ",", "\"\<Enthalpy H\>\""}], "}"}]}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.5917119103469687`*^9, 3.591711984226574*^9}, {
+  3.591712051604313*^9, 3.59171205545955*^9}, {3.591712089103386*^9, 
+  3.591712180219016*^9}, {3.5917122685745487`*^9, 3.591712377410681*^9}, {
+  3.591712408209094*^9, 3.591712411641005*^9}}],
+
+Cell["\<\
+The functions can rapidly get tedious, and so we\[CloseCurlyQuote]d like to \
+automate that as well.  Let\[CloseCurlyQuote]s try another Table, shall we?\
+\>", "Text",
+ CellChangeTimes->{{3.59171298615565*^9, 3.591713005349118*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"steamHgPlot", "=", 
+   RowBox[{"ListPlot", "[", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"steamT", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"steamHg", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], "}"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamHgFitPlot", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{"Fit", "[", 
+       RowBox[{
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"steamT", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], ",", 
+            RowBox[{"steamHg", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", 
+            RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          SuperscriptBox["x", "i"], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "0", ",", "12"}], "}"}]}], "]"}], ",", "x"}], 
+       "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "400"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"steamHgPlot", ",", "steamHgFitPlot", ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "400"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"2000", ",", "3000"}], "}"}]}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"AspectRatio", "\[Rule]", 
+    RowBox[{"1", "/", "3"}]}], ",", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Temperature T\>\"", ",", "\"\<Enthalpy H\>\""}], "}"}]}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.5917119103469687`*^9, 3.591711984226574*^9}, {
+  3.591712051604313*^9, 3.59171205545955*^9}, {3.591712089103386*^9, 
+  3.591712180219016*^9}, {3.5917122685745487`*^9, 3.5917123509523487`*^9}, {
+  3.5917124216744328`*^9, 3.59171242506563*^9}, {3.591712732927434*^9, 
+  3.5917127406715107`*^9}, {3.591716365009843*^9, 3.5917163686471653`*^9}}],
+
+Cell["\<\
+The residuals can be found and plotted as:\
+\>", "Text",
+ CellChangeTimes->{{3.591713014719273*^9, 3.5917130225195*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"residuals", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"steamT", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"steamHg", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "-", 
+         RowBox[{"Fit", "[", 
+          RowBox[{
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"steamT", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], ",", 
+               RowBox[{"steamHg", "[", 
+                RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", 
+               RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], ",", 
+           
+           RowBox[{"Table", "[", 
+            RowBox[{
+             SuperscriptBox["x", "i"], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", "0", ",", "12"}], "}"}]}], "]"}], ",", "x"}], 
+          "]"}]}], "/.", 
+        RowBox[{"x", "\[Rule]", 
+         RowBox[{"steamT", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"residuals", ",", 
+   RowBox[{"Filling", "\[Rule]", "0"}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", 
+    RowBox[{"1", "/", "5"}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.5917124542868156`*^9, 3.591712458423773*^9}, {
+  3.591712499208827*^9, 3.591712754720689*^9}}],
+
+Cell["\<\
+We can now make estimations of the steam enthalpy within an accuracy of \
+\[PlusMinus]5/2700=\[PlusMinus]0.1%.  Let\[CloseCurlyQuote]s code this into a \
+function.\
+\>", "Text",
+ CellChangeTimes->{{3.591713032985458*^9, 3.591713119787016*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"EnthalpyOfSatSteam", "[", "T_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Fit", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"steamT", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", 
+           RowBox[{"steamHg", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", 
+           RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], ",", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         SuperscriptBox["x", "i"], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "0", ",", "12"}], "}"}]}], "]"}], ",", "x"}], 
+      "]"}], "/.", 
+     RowBox[{"x", "\[Rule]", "T"}]}], ")"}], "/;", 
+   RowBox[{"T", "<", "380"}]}]}]], "Input",
+ CellChangeTimes->{{3.5917131425730543`*^9, 3.591713167330597*^9}, {
+  3.591713393023444*^9, 3.591713394558992*^9}, {3.591713430427483*^9, 
+  3.591713455038204*^9}}],
+
+Cell[BoxData[
+ RowBox[{"EnthalpyOfSatSteam", "[", "379.9", "]"}]], "Input",
+ CellChangeTimes->{{3.591713398010356*^9, 3.591713420440207*^9}, {
+  3.591713460086795*^9, 3.591713475087077*^9}}],
+
+Cell[" ", "Text",
+ Editable->False,
+ Selectable->False,
+ CellFrame->{{0, 0}, {0, 0.5}},
+ ShowCellBracket->False,
+ CellMargins->{{0, 0}, {1, 1}},
+ CellElementSpacings->{"CellMinHeight"->1},
+ CellFrameMargins->0,
+ CellFrameColor->RGBColor[0, 0, 1],
+ CellSize->{Inherited, 3}],
+
+Cell["\<\
+Let\[CloseCurlyQuote]s try another way to accomplish the same thing using an \
+interpolation between successive values.\
+\>", "Text",
+ CellChangeTimes->{{3.591714653180922*^9, 3.5917146764532957`*^9}, {
+  3.591714940207263*^9, 3.591714941797984*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"steamT", "[", 
+      RowBox[{"[", "i", "]"}], "]"}], ",", 
+     RowBox[{"steamHg", "[", 
+      RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", 
+     RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"Interpolation", "[", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"steamT", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], ",", 
+      RowBox[{"steamHg", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", 
+      RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.591714695439129*^9, 3.5917146977694683`*^9}, {
+  3.5917147430074377`*^9, 3.591714808278504*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"EnthalpyOfSatSteamInterp", "[", "T_", "]"}], ":=", 
+  RowBox[{"Interpolation", "[", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"steamT", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], ",", 
+        RowBox[{"steamHg", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", 
+        RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], ",", "T", 
+    ",", 
+    RowBox[{"InterpolationOrder", "\[Rule]", "3"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.5917148307674932`*^9, 3.5917148482213078`*^9}, {
+  3.59171490907611*^9, 3.591714909491333*^9}, {3.591714946984016*^9, 
+  3.591714963970009*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"steamHgPlot", "=", 
+   RowBox[{"ListPlot", "[", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"steamT", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"steamHg", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "steamT", "]"}]}], "}"}]}], "]"}], "}"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"steamHgFitPlot", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"EnthalpyOfSatSteamInterp", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "400"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"steamHgPlot", ",", "steamHgFitPlot", ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "400"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"2000", ",", "3000"}], "}"}]}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"AspectRatio", "\[Rule]", 
+    RowBox[{"1", "/", "3"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+   RowBox[{"FrameLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Temperature T\>\"", ",", "\"\<Enthalpy H\>\""}], "}"}]}], 
+   ",", 
+   RowBox[{"RotateLabel", "\[Rule]", "True"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.5917119103469687`*^9, 3.591711984226574*^9}, {
+  3.591712051604313*^9, 3.59171205545955*^9}, {3.591712089103386*^9, 
+  3.591712180219016*^9}, {3.5917122685745487`*^9, 3.5917123509523487`*^9}, {
+  3.5917124216744328`*^9, 3.59171242506563*^9}, {3.591712732927434*^9, 
+  3.5917127406715107`*^9}, {3.591714866367898*^9, 3.591714886361155*^9}, {
+  3.591715204649631*^9, 3.591715248406785*^9}}]
+}, Open  ]]
+},
+WindowSize->{1231, 1396},
+WindowMargins->{{Automatic, 1}, {Automatic, 0}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 27, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 139, 3, 65, "Subsection"],
+Cell[721, 27, 307, 5, 46, "Text"],
+Cell[1031, 34, 367, 10, 94, "Input"],
+Cell[1401, 46, 252, 6, 43, "Input"],
+Cell[1656, 54, 159, 3, 46, "Text"],
+Cell[1818, 59, 3054, 99, 319, "Input"],
+Cell[4875, 160, 163, 3, 46, "Text"],
+Cell[5041, 165, 1850, 49, 144, "Input"],
+Cell[6894, 216, 156, 3, 46, "Text"],
+Cell[7053, 221, 583, 17, 50, "Input"],
+Cell[7639, 240, 407, 11, 50, "Input"],
+Cell[8049, 253, 198, 4, 46, "Text"],
+Cell[8250, 259, 2212, 61, 208, "Input"],
+Cell[10465, 322, 242, 4, 46, "Text"],
+Cell[10710, 328, 2353, 64, 209, "Input"],
+Cell[13066, 394, 130, 3, 46, "Text"],
+Cell[13199, 399, 1631, 46, 198, "Input"],
+Cell[14833, 447, 253, 5, 76, "Text"],
+Cell[15089, 454, 1026, 29, 107, "Input"],
+Cell[16118, 485, 190, 3, 43, "Input"],
+Cell[16311, 490, 273, 9, 8, "Text"],
+Cell[16587, 501, 260, 5, 46, "Text"],
+Cell[16850, 508, 347, 11, 43, "Input"],
+Cell[17200, 521, 519, 15, 43, "Input"],
+Cell[17722, 538, 749, 20, 94, "Input"],
+Cell[18474, 560, 1890, 48, 169, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

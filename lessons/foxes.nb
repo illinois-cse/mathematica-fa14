@@ -1,0 +1,163 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5028,        154]
+NotebookOptionsPosition[      4591,        134]
+NotebookOutlinePosition[      4979,        151]
+CellTagsIndexPosition[      4936,        148]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Foxes & Rabbits (ODE Solution)", "Section",
+ CellChangeTimes->{{3.590419833943945*^9, 3.5904198371482067`*^9}, {
+  3.624810388084255*^9, 3.624810395711686*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"r", ",", "f", ",", "t"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"a", "=", "1"}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"growth", " ", "rate", " ", "of", " ", "rabbits"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"b", "=", "0.01"}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "consumption", " ", "rate", " ", "of", " ", "rabbits", " ", "by", " ", 
+    "foxes"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"c", "=", "1"}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{"death", " ", "rate", " ", "of", " ", "foxes"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"d", "=", "0.002"}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"growth", " ", "rate", " ", "of", " ", "predators", " ", 
+    RowBox[{"(", 
+     RowBox[{"because", " ", "they", " ", "eat", " ", "the", " ", "prey"}], 
+     ")"}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"popEqns", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"r", "'"}], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{
+       RowBox[{"a", " ", 
+        RowBox[{"r", "[", "t", "]"}]}], "-", " ", 
+       RowBox[{"b", " ", 
+        RowBox[{"r", "[", "t", "]"}], " ", 
+        RowBox[{"f", "[", "t", "]"}]}]}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"f", "'"}], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "c"}], " ", 
+        RowBox[{"f", "[", "t", "]"}]}], "+", 
+       RowBox[{"d", " ", 
+        RowBox[{"r", "[", "t", "]"}], 
+        RowBox[{"f", "[", "t", "]"}]}]}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"r", "[", "0", "]"}], "\[Equal]", "50"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"f", "[", "0", "]"}], "\[Equal]", "20"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"sol", "=", 
+  RowBox[{"NDSolve", "[", 
+   RowBox[{"popEqns", ",", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", "f"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", "25"}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.5904209810720043`*^9, 3.590421038368922*^9}, {
+  3.590421076023278*^9, 3.5904211278750353`*^9}, {3.5904211906524353`*^9, 
+  3.590421260675418*^9}, {3.590421445796959*^9, 3.590421536300538*^9}, {
+  3.590421609232008*^9, 3.590421610327835*^9}, {3.590421858916017*^9, 
+  3.5904218664758987`*^9}, {3.5904220864154663`*^9, 3.5904221012649097`*^9}, {
+  3.5904221580787277`*^9, 3.5904221594769506`*^9}, {3.590422338954995*^9, 
+  3.590422443838167*^9}, {3.590422939208803*^9, 3.5904230312507563`*^9}, {
+  3.5904230739940968`*^9, 3.590423267471981*^9}, {3.624810583079981*^9, 
+  3.624810592727888*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"r", "[", "t", "]"}], ",", 
+       RowBox[{"f", "[", "t", "]"}]}], "}"}], "/.", "sol"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "25"}], "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "200"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5904218790777807`*^9, 3.5904219323377113`*^9}, {
+  3.590422071098837*^9, 3.590422076957004*^9}, {3.590422454520205*^9, 
+  3.590422454870916*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"r", "[", "t", "]"}], ",", 
+       RowBox[{"f", "[", "t", "]"}]}], "}"}], "/.", "sol"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "25"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.590422464893721*^9, 3.5904225657638702`*^9}, {
+  3.624810470153927*^9, 3.624810511016621*^9}}]
+}, Open  ]]
+},
+WindowSize->{1016, 1348},
+WindowMargins->{{Automatic, 273}, {Automatic, 0}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 27, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 166, 2, 119, "Section"],
+Cell[748, 26, 2779, 74, 294, "Input"],
+Cell[3530, 102, 592, 15, 69, "Input"],
+Cell[4125, 119, 450, 12, 43, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

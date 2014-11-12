@@ -1,0 +1,236 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      7193,        226]
+NotebookOptionsPosition[      6672,        205]
+NotebookOutlinePosition[      7026,        221]
+CellTagsIndexPosition[      6983,        218]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "Now for an exercise:  write a solver for the 1D steady-state heat equation,\
+\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      FractionBox["k", 
+       RowBox[{"c", " ", "\[Rho]"}]], 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["\[PartialD]", "2"], "T"}], 
+       RowBox[{"\[PartialD]", 
+        SuperscriptBox["x", "2"]}]]}], "-", 
+     RowBox[{"\[Mu]T", "(", "x", ")"}]}], "=", "0"}], TraditionalForm]]],
+ ".\nTake k = c = \[Rho] = \[Mu] = 1.  The boundary conditions are:  T(0)=0; \
+T\[CloseCurlyQuote](1)=10."
+}], "Text",
+ CellChangeTimes->{{3.5913748763166113`*^9, 3.591375017632627*^9}, {
+  3.591376732967942*^9, 3.591376746969738*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"k", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"c", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Rho]", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Mu]", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"heatEqn", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        FractionBox["k", 
+         RowBox[{"c", " ", "\[Rho]"}]], 
+        RowBox[{
+         RowBox[{"T", "''"}], "[", "x", "]"}]}], "-", 
+       RowBox[{"\[Mu]", " ", 
+        RowBox[{"T", "[", "x", "]"}]}]}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"T", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"T", "'"}], "[", "1", "]"}], "\[Equal]", "10"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"heatSoln", "=", 
+  RowBox[{"NDSolve", "[", 
+   RowBox[{"heatEqn", ",", "T", ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.5913750007572813`*^9, 3.591375086570447*^9}, {
+  3.5913751212134867`*^9, 3.5913751340699587`*^9}, {3.591375818096006*^9, 
+  3.591375845524769*^9}}],
+
+Cell[BoxData[
+ RowBox[{"heatSol", "=", 
+  RowBox[{"DSolve", "[", 
+   RowBox[{"heatEqn", ",", "T", ",", "x"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.5913751394000607`*^9, 3.591375170113661*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"T", "[", "x", "]"}], "/.", "heatSol"}], "]"}], ",", 
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"T", "[", "x", "]"}], "/.", "heatSoln"}], "]"}]}], "}"}], ",", 
+   
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "200"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5913757634240103`*^9, 3.591375793183091*^9}, {
+  3.591375874693487*^9, 3.591375884838785*^9}}],
+
+Cell[TextData[{
+ "Well, that was easy enough (even to solve by hand).  Now add a heat source,\
+\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      FractionBox["k", 
+       RowBox[{"c", " ", "\[Rho]"}]], 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["\[PartialD]", "2"], "T"}], 
+       RowBox[{"\[PartialD]", 
+        SuperscriptBox["x", "2"]}]]}], "-", 
+     RowBox[{"\[Mu]T", "(", "x", ")"}], "+", 
+     RowBox[{"g", " ", 
+      RowBox[{"sin", "(", "x", ")"}]}]}], "=", "0"}], TraditionalForm]]],
+ "\nwhere g = 1.  Try it with ",
+ StyleBox["DSolve", "Input"],
+ " and ",
+ StyleBox["NDSolve", "Input"],
+ " both."
+}], "Text",
+ CellChangeTimes->{{3.591375175620925*^9, 3.591375231957666*^9}, {
+  3.591375862248054*^9, 3.591375865199938*^9}, {3.5913767106909447`*^9, 
+  3.591376715611418*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"k", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"c", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Rho]", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Mu]", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g", "=", "10"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"heatSrcEqn", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        FractionBox["k", 
+         RowBox[{"c", " ", "\[Rho]"}]], 
+        RowBox[{
+         RowBox[{"T", "''"}], "[", "x", "]"}]}], "-", 
+       RowBox[{"\[Mu]", " ", 
+        RowBox[{"T", "[", "x", "]"}]}], "+", 
+       RowBox[{"g", " ", 
+        RowBox[{"Sin", "[", "x", "]"}]}]}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"T", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"T", "'"}], "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"heatSrcSoln", "=", 
+  RowBox[{"NDSolve", "[", 
+   RowBox[{"heatSrcEqn", ",", "T", ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.5913750007572813`*^9, 3.591375086570447*^9}, {
+  3.5913751212134867`*^9, 3.5913751340699587`*^9}, {3.591375818096006*^9, 
+  3.591375845524769*^9}, {3.591375896930377*^9, 3.59137596113871*^9}, {
+  3.591376672569862*^9, 3.591376693654922*^9}}],
+
+Cell[BoxData[
+ RowBox[{"heatSrcSol", "=", 
+  RowBox[{"DSolve", "[", 
+   RowBox[{"heatSrcEqn", ",", "T", ",", "x"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.5913751394000607`*^9, 3.591375170113661*^9}, {
+  3.591375931449955*^9, 3.591375949768506*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"T", "[", "x", "]"}], "/.", "heatSrcSol"}], "]"}], ",", 
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"T", "[", "x", "]"}], "/.", "heatSrcSoln"}], "]"}]}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "200"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5913757634240103`*^9, 3.591375793183091*^9}, {
+  3.591375874693487*^9, 3.591375884838785*^9}, {3.59137597106008*^9, 
+  3.591375975607189*^9}}]
+},
+WindowSize->{740, 867},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 27, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 702, 20, 85, "Text"],
+Cell[1262, 42, 1286, 37, 210, "Input"],
+Cell[2551, 81, 196, 4, 28, "Input"],
+Cell[2750, 87, 621, 17, 46, "Input"],
+Cell[3374, 106, 828, 26, 86, "Text"],
+Cell[4205, 134, 1531, 42, 227, "Input"],
+Cell[5739, 178, 251, 5, 28, "Input"],
+Cell[5993, 185, 675, 18, 46, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
