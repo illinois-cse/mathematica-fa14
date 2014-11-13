@@ -81,26 +81,23 @@
 
 <p>Code Snippets:</p>
 
-<pre><code>data = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
+<div class="highlight highlight-mathematica"><pre><span class="pl-v">data</span> <span class="pl-ko">=</span> <span class="pl-s1">"AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"</span></pre></div>
 
+<div class="highlight highlight-mathematica"><pre><span class="pl-v">MorseList</span> <span class="pl-ko">=</span> {<span class="pl-s1">".-"</span>, <span class="pl-s1">"-..."</span>, <span class="pl-s1">"-.-."</span>, <span class="pl-s1">"-.."</span>, <span class="pl-s1">"."</span>, <span class="pl-s1">"..-."</span>, <span class="pl-s1">"--."</span>, <span class="pl-s1">"...."</span>,<span class="pl-s1">".."</span>, <span class="pl-s1">".---"</span>, <span class="pl-s1">"-.-"</span>, <span class="pl-s1">".-.."</span>, <span class="pl-s1">"--"</span>, <span class="pl-s1">"-."</span>, <span class="pl-s1">"---"</span>, <span class="pl-s1">".--."</span>, <span class="pl-s1">"--.-"</span>,<span class="pl-s1">".-."</span>, <span class="pl-s1">"..."</span>, <span class="pl-s1">"-"</span>, <span class="pl-s1">"..-"</span>, <span class="pl-s1">"...-"</span>, <span class="pl-s1">".--"</span>, <span class="pl-s1">"-..-"</span>, <span class="pl-s1">"-.--"</span>, <span class="pl-s1">"--.."</span>,<span class="pl-s1">"----."</span>, <span class="pl-s1">"-----"</span>, <span class="pl-s1">".----"</span>, <span class="pl-s1">"..---"</span>, <span class="pl-s1">"...--"</span>,<span class="pl-s1">"....-"</span>, <span class="pl-s1">"....."</span>,<span class="pl-s1">"-...."</span>, <span class="pl-s1">"--..."</span>, <span class="pl-s1">"---.."</span>}<span class="pl-ko">;</span></pre></div>
 
-MorseList = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....","..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-",".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..","----.", "-----", ".----", "..---", "...--","....-", ".....","-....", "--...", "---.."};
-
-
-steamdata = Import["http://www.ohio.edu/mechanical/thermo/property_tables/H2O/H2O_TempSat.xls"][[1]] // TableForm
-steamT   = Part[steamdata[[1, 4 ;; 52, 1]]];
-steamP   = Part[steamdata[[1, 4 ;; 52, 2]]];
-steamVf  = Part[steamdata[[1, 4 ;; 52, 3]]];
-steamVg  = Part[steamdata[[1, 4 ;; 52, 4]]];
-steamUf  = Part[steamdata[[1, 4 ;; 52, 5]]];
-steamUg  = Part[steamdata[[1, 4 ;; 52, 6]]];
-steamHf  = Part[steamdata[[1, 4 ;; 52, 7]]];
-steamHfg = Part[steamdata[[1, 4 ;; 52, 8]]];
-steamHg  = Part[steamdata[[1, 4 ;; 52, 9]]];
-steamSf  = Part[steamdata[[1, 4 ;; 52, 10]]];
-steamSfg = Part[steamdata[[1, 4 ;; 52, 11]]];
-steamSg  = Part[steamdata[[1, 4 ;; 52, 12]]];
-</code></pre>
+<div class="highlight highlight-mathematica"><pre><span class="pl-v">steamdata</span> <span class="pl-ko">=</span> <span class="pl-enf">Import</span>[<span class="pl-s1">"http://www.ohio.edu/mechanical/thermo/property_tables/H2O/H2O_TempSat.xls"</span>][[<span class="pl-cn">1</span>]] <span class="pl-ko">//</span> <span class="pl-v">TableForm</span>
+<span class="pl-v">steamT</span>   <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">1</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamP</span>   <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">2</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamVf</span>  <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">3</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamVg</span>  <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">4</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamUf</span>  <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">5</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamUg</span>  <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">6</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamHf</span>  <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">7</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamHfg</span> <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">8</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamHg</span>  <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">9</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamSf</span>  <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">10</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamSfg</span> <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">11</span>]]]<span class="pl-ko">;</span>
+<span class="pl-v">steamSg</span>  <span class="pl-ko">=</span> <span class="pl-enf">Part</span>[<span class="pl-v">steamdata</span>[[<span class="pl-cn">1</span>, <span class="pl-cn">4</span> <span class="pl-ko">;;</span> <span class="pl-cn">52</span>, <span class="pl-cn">12</span>]]]<span class="pl-ko">;</span></pre></div>
 
 <h1>
 <a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#resources">Resources</a>
