@@ -83,7 +83,9 @@
 
 <pre><code>data = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
 
+
 MorseList = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....","..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-",".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..","----.", "-----", ".----", "..---", "...--","....-", ".....","-....", "--...", "---.."};
+
 
 steamdata = Import["http://www.ohio.edu/mechanical/thermo/property_tables/H2O/H2O_TempSat.xls"][[1]] // TableForm
 steamT   = Part[steamdata[[1, 4 ;; 52, 1]]];
@@ -110,6 +112,7 @@ steamSg  = Part[steamdata[[1, 4 ;; 52, 12]]];
 <li><a href="http://reference.wolfram.com/language/">Wolfram Language Reference</a></li>
 <li><a href="http://blog.wolfram.com/2011/12/07/10-tips-for-writing-fast-mathematica-code/">10 Tips for Writing Fast <em>Mathematica</em> Code</a></li>
 <li><a href="http://demonstrations.wolfram.com/">Wolfram Demonstrations Project</a></li>
+<li>Paul Wellin, <a href="http://www.cambridge.org/co/academic/subjects/computer-science/scientific-computing-scientific-software/programming-mathematica-introduction"><em>Programming with <em>Mathematica</em></em></a>, 2013.</li>
 </ul>
 
 <h1>
